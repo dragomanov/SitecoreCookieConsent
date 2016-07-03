@@ -1,0 +1,45 @@
+----item----
+version: 1
+id: {7031D23F-8644-482F-8F97-C27AB2C13746}
+database: master
+path: /sitecore/system/Modules/Cookie Consent/Settings/website
+parent: {91870AED-C9D6-49E9-A8F1-D40CBB3CCB36}
+name: website
+master: {00000000-0000-0000-0000-000000000000}
+template: {8C442ACB-5291-4CFC-A809-742B70A29654}
+templatekey: CookieConsentSettings
+created: 20160703T114740:636031432601200000
+
+----version----
+language: en
+version: 1
+revision: 079dc708-34be-44ec-a3ec-9001076f0860
+
+----field----
+field: {25BED78C-4957-4165-998A-CA1B52F67497}
+name: __Created
+key: __created
+content-length: 16
+
+20160703T114740Z
+----field----
+field: {8CDC337E-A112-42FB-BBB4-4143751E123F}
+name: __Revision
+key: __revision
+content-length: 36
+
+079dc708-34be-44ec-a3ec-9001076f0860
+----field----
+field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
+name: __Updated
+key: __updated
+content-length: 16
+
+20160703T115454Z
+----field----
+field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
+name: __Updated by
+key: __updated by
+content-length: 14
+
+sitecore\admin

@@ -82,8 +82,19 @@
     <None Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="layouts\Modules\CookieConsent\ScriptJs.ascx.cs">
+      <DependentUpon>ScriptJs.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="layouts\Modules\CookieConsent\ScriptJs.ascx.designer.cs">
+      <DependentUpon>ScriptJs.ascx</DependentUpon>
+    </Compile>
     <Compile Include="Models\Settings.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Content Include="layouts\Modules\CookieConsent\ScriptJs.ascx" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

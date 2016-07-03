@@ -1,4 +1,4 @@
-﻿namespace SitecoreCookieConsent.Models
+﻿namespace Sitecore.CookieConsent.Models
 {
     public class Settings
     {

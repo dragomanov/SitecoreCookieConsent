@@ -90,10 +90,12 @@
       <DependentUpon>ScriptJs.ascx</DependentUpon>
     </Compile>
     <Compile Include="Models\Settings.cs" />
+    <Compile Include="Pipelines\RenderLayout\InsertCookieConsent.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <Content Include="App_Config\Include\Sitecore.CookieConsent.config" />
     <Content Include="layouts\Modules\CookieConsent\ScriptJs.ascx" />
   </ItemGroup>
   <PropertyGroup>

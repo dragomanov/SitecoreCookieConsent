@@ -1,6 +1,6 @@
 ﻿namespace Sitecore.CookieConsent.Models
 {
-    public class CookieConsentSettings
+    public class CookieConsentSettings : ICookieConsentSettings
     {
         public bool Enabled { get; set; }
 

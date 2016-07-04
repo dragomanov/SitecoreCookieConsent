@@ -11,6 +11,13 @@ templatekey: Folder
 created: 20160703T114406:636031430466130000
 
 ----field----
+field: {06D5295C-ED2F-4A54-9BF2-26228D113318}
+name: __Icon
+key: __icon
+content-length: 37
+
+Network/16x16/cookies_preferences.png
+----field----
 field: {1172F251-DAD4-4EFB-A329-0C63500E4F1E}
 name: __Masters
 key: __masters
@@ -20,7 +27,7 @@ content-length: 77
 ----version----
 language: en
 version: 1
-revision: 9cabdd91-165f-49a8-b324-0d1fb318f073
+revision: bf657c51-92fe-4537-8aab-33c910628e4e
 
 ----field----
 field: {25BED78C-4957-4165-998A-CA1B52F67497}
@@ -42,14 +49,14 @@ name: __Revision
 key: __revision
 content-length: 36
 
-9cabdd91-165f-49a8-b324-0d1fb318f073
+bf657c51-92fe-4537-8aab-33c910628e4e
 ----field----
 field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
 name: __Updated
 key: __updated
 content-length: 16
 
-20160703T114451Z
+20160704T151210Z
 ----field----
 field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
 name: __Updated by

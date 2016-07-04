@@ -10,10 +10,17 @@ template: {A87A00B1-E6DB-45AB-8B54-636FEC3B5523}
 templatekey: Folder
 created: 20160703T101238:636031375584830000
 
+----field----
+field: {06D5295C-ED2F-4A54-9BF2-26228D113318}
+name: __Icon
+key: __icon
+content-length: 25
+
+Network/16x16/cookies.png
 ----version----
 language: en
 version: 1
-revision: 71c0d749-3a0a-4bbf-843f-62a16a0e1540
+revision: 04b14c5b-b662-439e-bbfc-af8191c4fd9e
 
 ----field----
 field: {25BED78C-4957-4165-998A-CA1B52F67497}
@@ -35,14 +42,14 @@ name: __Revision
 key: __revision
 content-length: 36
 
-71c0d749-3a0a-4bbf-843f-62a16a0e1540
+04b14c5b-b662-439e-bbfc-af8191c4fd9e
 ----field----
 field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
 name: __Updated
 key: __updated
 content-length: 16
 
-20160703T101238Z
+20160704T151408Z
 ----field----
 field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
 name: __Updated by

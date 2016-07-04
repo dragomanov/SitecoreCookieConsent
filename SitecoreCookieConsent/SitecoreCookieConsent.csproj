@@ -92,6 +92,8 @@
     <Compile Include="Models\Settings.cs" />
     <Compile Include="Pipelines\RenderLayout\InsertCookieConsent.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\CookieConsentService.cs" />
+    <Compile Include="Services\ICookieConsentService.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

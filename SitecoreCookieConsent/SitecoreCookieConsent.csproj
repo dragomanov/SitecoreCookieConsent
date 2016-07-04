@@ -89,7 +89,7 @@
     <Compile Include="layouts\Modules\CookieConsent\ScriptJs.ascx.designer.cs">
       <DependentUpon>ScriptJs.ascx</DependentUpon>
     </Compile>
-    <Compile Include="Models\Settings.cs" />
+    <Compile Include="Models\CookieConsentSettings.cs" />
     <Compile Include="Pipelines\RenderLayout\InsertCookieConsent.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\CookieConsentService.cs" />

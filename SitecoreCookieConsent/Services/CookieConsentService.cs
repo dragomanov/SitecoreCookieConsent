@@ -18,7 +18,7 @@ namespace Sitecore.CookieConsent.Services
                 return;
             }
 
-            Settings model = new Settings
+            CookieConsentSettings model = new CookieConsentSettings
             {
                 Enabled = settingItem["Enabled"] == "1",
                 Message = settingItem["Message"],

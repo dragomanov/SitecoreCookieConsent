@@ -8,17 +8,37 @@ namespace Sitecore.CookieConsent.Services
 {
     public class CookieConsentService : ICookieConsentService
     {
+        protected virtual ICookieConsentSettings SettingsModel { get; set; }
+
         public void RenderControl()
         {
-            string settingsItemPath = $"/sitecore/system/Modules/Cookie Consent/Settings/{Context.GetSiteName()}";
-            Item settingItem = Context.Database?.GetItem(settingsItemPath);
+            Item settingsItem = GetSettingsItem();
 
-            if (settingItem == null)
+            if (settingsItem == null)
             {
                 return;
             }
 
-            CookieConsentSettings model = new CookieConsentSettings
+            SetSettingsModel(settingsItem);
+
+            if (!SettingsModel.Enabled)
+            {
+                return;
+            }
+
+            RenderAscxControl();
+        }
+
+        private static Item GetSettingsItem()
+        {
+            string settingsItemPath = $"/sitecore/system/Modules/Cookie Consent/Settings/{Context.GetSiteName()}";
+
+            return Context.Database?.GetItem(settingsItemPath);
+        }
+
+        private void SetSettingsModel(Item settingItem)
+        {
+            SettingsModel = new CookieConsentSettings
             {
                 Enabled = settingItem["Enabled"] == "1",
                 Message = settingItem["Message"],
@@ -27,12 +47,10 @@ namespace Sitecore.CookieConsent.Services
                 PolicyLink = ((LinkField)settingItem.Fields["PolicyLink"])?.GetFriendlyUrl(),
                 Theme = settingItem["Theme"]
             };
+        }
 
-            if (!model.Enabled)
-            {
-                return;
-            }
-
+        private void RenderAscxControl()
+        {
             Page page = Context.Page?.Page;
             ScriptJs control = (ScriptJs)page?.LoadControl("~/layouts/Modules/CookieConsent/ScriptJs.ascx");
 
@@ -41,7 +59,7 @@ namespace Sitecore.CookieConsent.Services
                 return;
             }
 
-            control.Model = model;
+            control.Model = SettingsModel;
             page.Controls.Add(control);
         }
     }

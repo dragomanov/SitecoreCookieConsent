@@ -6,7 +6,7 @@ namespace Sitecore.CookieConsent.layouts.Modules.CookieConsent
 {
     public partial class ScriptJs : UserControl
     {
-        public CookieConsentSettings Model { get; set; }
+        public ICookieConsentSettings Model { get; set; }
 
         protected void Page_Load(object sender, EventArgs e)
         {

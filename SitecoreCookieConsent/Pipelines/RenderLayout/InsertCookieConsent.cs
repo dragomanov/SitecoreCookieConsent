@@ -1,5 +1,4 @@
-﻿using System.Diagnostics;
-using Sitecore.CookieConsent.Services;
+﻿using Sitecore.CookieConsent.Services;
 using Sitecore.Pipelines.RenderLayout;
 
 namespace Sitecore.CookieConsent.Pipelines.RenderLayout
@@ -10,10 +9,7 @@ namespace Sitecore.CookieConsent.Pipelines.RenderLayout
 
         public override void Process(RenderLayoutArgs args)
         {
-            Stopwatch sw = new Stopwatch();
-            sw.Start();
             RenderControl();
-            sw.Stop();
         }
 
         protected virtual void RenderControl()

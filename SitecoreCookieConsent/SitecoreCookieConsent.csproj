@@ -64,19 +64,6 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Web.Debug.config">
-      <DependentUpon>Web.config</DependentUpon>
-    </None>
-    <None Include="Web.Release.config">
-      <DependentUpon>Web.config</DependentUpon>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Web.config">
-      <SubType>Designer</SubType>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="layouts\Modules\CookieConsent\ScriptJs.ascx.cs">
       <DependentUpon>ScriptJs.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

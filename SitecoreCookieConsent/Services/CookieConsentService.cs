@@ -8,7 +8,7 @@ namespace Sitecore.CookieConsent.Services
 {
     public class CookieConsentService : ICookieConsentService
     {
-        protected virtual ICookieConsentSettings SettingsModel { get; set; }
+        private const string SettingsItemPath = "/sitecore/system/Modules/Cookie Consent/Settings/{0}";
 
         public void RenderControl()
         {
@@ -19,47 +19,55 @@ namespace Sitecore.CookieConsent.Services
                 return;
             }
 
-            SetSettingsModel(settingsItem);
+            CookieConsentSettings settings = GetSettingsModel(settingsItem);
 
-            if (!SettingsModel.Enabled)
+            if (!settings.Enabled)
             {
                 return;
             }
 
-            RenderAscxControl();
+            RenderAscxControl(settings);
         }
 
         private static Item GetSettingsItem()
         {
-            string settingsItemPath = $"/sitecore/system/Modules/Cookie Consent/Settings/{Context.GetSiteName()}";
+            string settingsItemPath = string.Format(SettingsItemPath, Context.GetSiteName());
 
-            return Context.Database?.GetItem(settingsItemPath);
+            return Context.Database != null ? Context.Database.GetItem(settingsItemPath) : null;
         }
 
-        private void SetSettingsModel(Item settingItem)
+        private static CookieConsentSettings GetSettingsModel(Item settingItem)
         {
-            SettingsModel = new CookieConsentSettings
+            var policyLink = (LinkField)settingItem.Fields["PolicyLink"];
+
+            return new CookieConsentSettings
             {
                 Enabled = settingItem["Enabled"] == "1",
                 Message = settingItem["Message"],
                 DismissButton = settingItem["DismissButton"],
                 LearnMore = settingItem["LearnMore"],
-                PolicyLink = ((LinkField)settingItem.Fields["PolicyLink"])?.GetFriendlyUrl(),
+                PolicyLink = policyLink != null ? policyLink.GetFriendlyUrl() : string.Empty,
                 Theme = settingItem["Theme"]
             };
         }
 
-        private void RenderAscxControl()
+        private static void RenderAscxControl(CookieConsentSettings settings)
         {
-            Page page = Context.Page?.Page;
-            ScriptJs control = (ScriptJs)page?.LoadControl("~/layouts/Modules/CookieConsent/ScriptJs.ascx");
+            Page page = Context.Page != null ? Context.Page.Page : null;
+
+            if (page == null)
+            {
+                return;
+            }
+
+            var control = (ScriptJs)page.LoadControl("~/layouts/Modules/CookieConsent/ScriptJs.ascx");
 
             if (control == null)
             {
                 return;
             }
 
-            control.Model = SettingsModel;
+            control.Model = settings;
             page.Controls.Add(control);
         }
     }

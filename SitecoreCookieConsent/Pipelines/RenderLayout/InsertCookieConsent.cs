@@ -1,11 +1,23 @@
 ﻿using Sitecore.CookieConsent.Services;
+using Sitecore.Diagnostics;
 using Sitecore.Pipelines.RenderLayout;
 
 namespace Sitecore.CookieConsent.Pipelines.RenderLayout
 {
     public class InsertCookieConsent : RenderLayoutProcessor
     {
-        protected virtual ICookieConsentService Service { get; set; } = new CookieConsentService();
+        protected ICookieConsentService Service { get; set; }
+
+        public InsertCookieConsent()
+            : this(new CookieConsentService())
+        {
+        }
+
+        public InsertCookieConsent(ICookieConsentService service)
+        {
+            Assert.ArgumentNotNull(service, "service");
+            Service = service;
+        }
 
         public override void Process(RenderLayoutArgs args)
         {

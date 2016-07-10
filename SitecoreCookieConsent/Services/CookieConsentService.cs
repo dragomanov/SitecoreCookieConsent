@@ -34,7 +34,7 @@ namespace Sitecore.CookieConsent.Services
             "publisher"
         };
 
-        public void RenderControl()
+        public void RenderCookieConsent()
         {
             if (IsSitecoreSite())
             {

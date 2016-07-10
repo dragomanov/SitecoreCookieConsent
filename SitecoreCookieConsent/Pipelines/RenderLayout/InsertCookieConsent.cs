@@ -27,7 +27,7 @@ namespace Sitecore.CookieConsent.Pipelines.RenderLayout
 
         protected virtual void RenderControl()
         {
-            Service.RenderControl();
+            Service.RenderCookieConsent();
         }
     }
 }

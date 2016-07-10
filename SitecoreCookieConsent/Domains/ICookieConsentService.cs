@@ -2,6 +2,6 @@
 {
     public interface ICookieConsentService
     {
-        void RenderControl();
+        void RenderCookieConsent();
     }
 }

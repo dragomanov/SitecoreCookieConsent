@@ -1,4 +1,5 @@
-﻿using Sitecore.CookieConsent.Services;
+﻿using Sitecore.CookieConsent.Domains;
+using Sitecore.CookieConsent.Services;
 using Sitecore.Diagnostics;
 using Sitecore.Pipelines.RenderLayout;
 

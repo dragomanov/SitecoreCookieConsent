@@ -1,4 +1,4 @@
-﻿namespace Sitecore.CookieConsent.Services
+﻿namespace Sitecore.CookieConsent.Domains
 {
     public interface ICookieConsentService
     {

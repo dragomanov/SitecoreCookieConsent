@@ -1,4 +1,7 @@
-﻿using System.Web.UI;
+﻿using System.Collections.Generic;
+using System.Diagnostics;
+using System.Web.UI;
+using Sitecore.CookieConsent.Domains;
 using Sitecore.CookieConsent.layouts.Modules.CookieConsent;
 using Sitecore.CookieConsent.Models;
 using Sitecore.Data;
@@ -18,8 +21,26 @@ namespace Sitecore.CookieConsent.Services
         private static readonly ID PolicyLinkFieldID = new ID("{14A55E2B-F047-4D11-AA71-F235C06CE341}");
         private static readonly ID ThemeFieldID = new ID("{3205FD36-5762-4F45-A0B1-C206110E4479}");
 
+        private static readonly ICollection<string> SitecoreSitesNames = new []
+        {
+            "shell",
+            "login",
+            "admin",
+            "service",
+            "modules_shell",
+            "modules_website",
+            "scheduler",
+            "system",
+            "publisher"
+        };
+
         public void RenderControl()
         {
+            if (IsSitecoreSite())
+            {
+                return;
+            }
+            
             Item settingsItem = GetSettingsItem();
 
             if (settingsItem == null)
@@ -35,6 +56,11 @@ namespace Sitecore.CookieConsent.Services
             }
 
             RenderAscxControl(settings);
+        }
+
+        private static bool IsSitecoreSite()
+        {
+            return SitecoreSitesNames.Contains(Context.GetSiteName());
         }
 
         private static Item GetSettingsItem()

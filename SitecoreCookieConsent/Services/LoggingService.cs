@@ -1,4 +1,5 @@
 ﻿using System;
+using Sitecore.CookieConsent.Domains;
 using Sitecore.Diagnostics;
 
 namespace Sitecore.CookieConsent.Services

@@ -76,13 +76,15 @@
     <Compile Include="Pipelines\RenderLayout\InsertCookieConsent.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\CookieConsentService.cs" />
-    <Compile Include="Services\ICookieConsentService.cs" />
-    <Compile Include="Services\ILoggingService.cs" />
+    <Compile Include="Domains\ICookieConsentService.cs" />
+    <Compile Include="Domains\ILoggingService.cs" />
     <Compile Include="Services\LoggingService.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <Content Include="App_Config\Include\Sitecore.CookieConsent.config" />
+    <Content Include="App_Config\Include\Sitecore.CookieConsent.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="layouts\Modules\CookieConsent\ScriptJs.ascx" />
   </ItemGroup>
   <PropertyGroup>

@@ -5,16 +5,16 @@ using Sitecore.Pipelines.RenderLayout;
 
 namespace Sitecore.CookieConsent.Pipelines.RenderLayout
 {
-    public class InsertCookieConsent : RenderLayoutProcessor
+    public class RenderCookieConsent : RenderLayoutProcessor
     {
         protected ICookieConsentService Service { get; set; }
 
-        public InsertCookieConsent()
+        public RenderCookieConsent()
             : this(new CookieConsentService())
         {
         }
 
-        public InsertCookieConsent(ICookieConsentService service)
+        public RenderCookieConsent(ICookieConsentService service)
         {
             Assert.ArgumentNotNull(service, "service");
             Service = service;
@@ -22,12 +22,12 @@ namespace Sitecore.CookieConsent.Pipelines.RenderLayout
 
         public override void Process(RenderLayoutArgs args)
         {
-            RenderControl();
+            Render(args);
         }
 
-        protected virtual void RenderControl()
+        protected virtual void Render(RenderLayoutArgs args)
         {
-            Service.RenderCookieConsent();
+            Service.RenderCookieConsent(args);
         }
     }
 }

@@ -46,6 +46,9 @@
     <Reference Include="Sitecore.Kernel">
       <HintPath>..\libs\Sitecore.Kernel.dll</HintPath>
     </Reference>
+    <Reference Include="Sitecore.Mvc">
+      <HintPath>..\libs\Sitecore.Mvc.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -64,6 +67,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Filters\InsertCookieConsentFilter.cs" />
     <Compile Include="layouts\Modules\CookieConsent\ScriptJs.ascx.cs">
       <DependentUpon>ScriptJs.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -73,7 +77,8 @@
     </Compile>
     <Compile Include="Models\CookieConsentSettings.cs" />
     <Compile Include="Models\ICookieConsentSettings.cs" />
-    <Compile Include="Pipelines\RenderLayout\InsertCookieConsent.cs" />
+    <Compile Include="Pipelines\RequestEnd\RenderCookieConsent.cs" />
+    <Compile Include="Pipelines\RenderLayout\RenderCookieConsent.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\CookieConsentService.cs" />
     <Compile Include="Domains\ICookieConsentService.cs" />

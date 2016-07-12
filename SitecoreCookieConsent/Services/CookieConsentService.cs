@@ -1,14 +1,11 @@
 ﻿using System.Collections.Generic;
-using System.Web;
 using System.Web.UI;
 using Sitecore.CookieConsent.Domains;
-using Sitecore.CookieConsent.Filters;
 using Sitecore.CookieConsent.layouts.Modules.CookieConsent;
 using Sitecore.CookieConsent.Models;
 using Sitecore.Data;
 using Sitecore.Data.Fields;
 using Sitecore.Data.Items;
-using Sitecore.Mvc.Pipelines;
 using Sitecore.Pipelines;
 
 namespace Sitecore.CookieConsent.Services
@@ -51,73 +48,85 @@ namespace Sitecore.CookieConsent.Services
             "publisher"
         };
 
-        public void RenderCookieConsent(PipelineArgs args)
+        private readonly Item _settingsItem;
+        private readonly CookieConsentSettings _settings;
+
+        public CookieConsentService()
         {
             if (IsSitecoreSite())
             {
                 return;
             }
 
-            Item settingsItem = GetSettingsItem();
+            _settingsItem = GetSettingsItem();
 
-            if (settingsItem == null)
+            if (_settingsItem == null)
             {
                 return;
             }
 
-            CookieConsentSettings settings = GetSettingsModel(settingsItem);
-
-            if (!settings.Enabled)
-            {
-                return;
-            }
-
-            var mvcArgs = args as MvcPipelineArgs;
-
-            if (mvcArgs != null)
-            {
-                RenderRendering(mvcArgs, settings);
-            }
-            else
-            {
-                RenderAscxControl(settings);
-            }
+            _settings = GetSettingsModel();
         }
 
-        private static bool IsSitecoreSite()
+        public void RenderCookieConsent()
+        {
+            if (_settings == null || !_settings.Enabled)
+            {
+                return;
+            }
+            
+            RenderAscxControl();
+        }
+
+        public string GetCookieConsent()
+        {
+            if (_settings == null || !_settings.Enabled)
+            {
+                return string.Empty;
+            }
+
+            string message = _settings.Message;
+            string dismiss = _settings.DismissButton;
+            string learnMore = _settings.LearnMore;
+            string link = _settings.PolicyLink;
+            string theme = _settings.Theme;
+
+            return string.Format(ScriptFormat, message, dismiss, learnMore, link, theme);
+        }
+
+        private bool IsSitecoreSite()
         {
             return SitecoreSitesNames.Contains(Context.GetSiteName());
         }
 
-        private static Item GetSettingsItem()
+        private Item GetSettingsItem()
         {
             string settingsItemPath = string.Format(SettingsItemPath, Context.GetSiteName());
 
             return Context.Database != null ? Context.Database.GetItem(settingsItemPath) : null;
         }
 
-        private static CookieConsentSettings GetSettingsModel(Item settingItem)
+        private CookieConsentSettings GetSettingsModel()
         {
-            var policyLink = (LinkField)settingItem.Fields[PolicyLinkFieldID];
+            if (_settingsItem == null)
+            {
+                return null;
+            }
+
+            var policyLink = (LinkField)_settingsItem.Fields[PolicyLinkFieldID];
 
             return new CookieConsentSettings
             {
-                Enabled = settingItem[EnabledFieldID] == "1",
-                Message = settingItem[MessageFieldID],
-                DismissButton = settingItem[DismissButtonFieldID],
-                LearnMore = settingItem[LearnMoreFieldID],
+                Enabled = _settingsItem[EnabledFieldID] == "1",
+                Message = _settingsItem[MessageFieldID],
+                DismissButton = _settingsItem[DismissButtonFieldID],
+                LearnMore = _settingsItem[LearnMoreFieldID],
                 PolicyLink = policyLink != null ? policyLink.GetFriendlyUrl() : string.Empty,
-                Theme = settingItem[ThemeFieldID]
+                Theme = _settingsItem[ThemeFieldID]
             };
         }
 
-        private static void RenderRendering(MvcPipelineArgs args, CookieConsentSettings settings)
-        {
-            HttpResponseBase response = args.PageContext.RequestContext.HttpContext.Response;
-            response.Filter = new InsertCookieConsentFilter(response.Filter, GetScript(settings));
-        }
-
-        private static void RenderAscxControl(CookieConsentSettings settings)
+        private void RenderAscxControl()
         {
             Page page = Context.Page != null ? Context.Page.Page : null;
 
@@ -133,19 +142,8 @@ namespace Sitecore.CookieConsent.Services
                 return;
             }
 
-            control.Model = settings;
+            control.Model = _settings;
             page.Controls.Add(control);
-        }
-
-        private static string GetScript(CookieConsentSettings settings)
-        {
-            string message = settings.Message;
-            string dismiss = settings.DismissButton;
-            string learnMore = settings.LearnMore;
-            string link = settings.PolicyLink;
-            string theme = settings.Theme;
-
-            return string.Format(ScriptFormat, message, dismiss, learnMore, link, theme);
         }
     }
 }

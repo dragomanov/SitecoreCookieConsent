@@ -22,12 +22,12 @@ namespace Sitecore.CookieConsent.Pipelines.RenderLayout
 
         public override void Process(RenderLayoutArgs args)
         {
-            Render(args);
+            Render();
         }
 
-        protected virtual void Render(RenderLayoutArgs args)
+        protected virtual void Render()
         {
-            Service.RenderCookieConsent(args);
+            Service.RenderCookieConsent();
         }
     }
 }

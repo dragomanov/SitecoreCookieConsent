@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Web.UI;
+using Sitecore.CookieConsent.Constants;
 using Sitecore.CookieConsent.Domains;
 using Sitecore.CookieConsent.Models;
 using Sitecore.CookieConsent.sitecore_modules.Web.CookieConsent;
@@ -11,8 +12,6 @@ namespace Sitecore.CookieConsent.Services
 {
     public class CookieConsentService : ICookieConsentService
     {
-        private const string ControlPath = "~/sitecore modules/Web/CookieConsent/CookieConsentControl.ascx";
-        private const string SettingsItemPath = "/sitecore/system/Modules/Cookie Consent/Settings/{0}";
         private const string ScriptFormat =
             @"  <!-- Begin Cookie Consent plugin by Silktide - http://silktide.com/cookieconsent -->
                 <script type=""text/javascript"">
@@ -48,11 +47,44 @@ namespace Sitecore.CookieConsent.Services
             "publisher"
         };
 
-        private readonly Item _settingsItem;
-        private readonly CookieConsentSettings _settings;
+        private CookieConsentSettings _settings;
+        private Item _settingsItem;
 
-        public CookieConsentService()
+        public void RenderCookieConsent()
         {
+            CheckSettings();
+
+            if (_settings == null || !_settings.Enabled)
+            {
+                return;
+            }
+            
+            RenderAscxControl();
+        }
+
+        public string GetCookieConsent()
+        {
+            CheckSettings();
+
+            if (_settings == null || !_settings.Enabled)
+            {
+                return string.Empty;
+            }
+
+            string message = _settings.Message;
+            string dismiss = _settings.DismissButton;
+            string learnMore = _settings.LearnMore;
+            string link = _settings.PolicyLink;
+            string theme = _settings.Theme;
+
+            return string.Format(ScriptFormat, message, dismiss, learnMore, link, theme);
+        }
+
+        private void CheckSettings()
+        {
+            _settingsItem = null;
+            _settings = null;
+
             if (IsSitecoreSite())
             {
                 return;
@@ -68,32 +100,6 @@ namespace Sitecore.CookieConsent.Services
             _settings = GetSettingsModel();
         }
 
-        public void RenderCookieConsent()
-        {
-            if (_settings == null || !_settings.Enabled)
-            {
-                return;
-            }
-            
-            RenderAscxControl();
-        }
-
-        public string GetCookieConsent()
-        {
-            if (_settings == null || !_settings.Enabled)
-            {
-                return string.Empty;
-            }
-
-            string message = _settings.Message;
-            string dismiss = _settings.DismissButton;
-            string learnMore = _settings.LearnMore;
-            string link = _settings.PolicyLink;
-            string theme = _settings.Theme;
-
-            return string.Format(ScriptFormat, message, dismiss, learnMore, link, theme);
-        }
-
         private bool IsSitecoreSite()
         {
             return SitecoreSitesNames.Contains(Context.GetSiteName());
@@ -101,7 +107,7 @@ namespace Sitecore.CookieConsent.Services
 
         private Item GetSettingsItem()
         {
-            string settingsItemPath = string.Format(SettingsItemPath, Context.GetSiteName());
+            string settingsItemPath = string.Format(Paths.SettingsItemPath, Context.GetSiteName());
 
             return Context.Database != null ? Context.Database.GetItem(settingsItemPath) : null;
         }
@@ -135,7 +141,7 @@ namespace Sitecore.CookieConsent.Services
                 return;
             }
 
-            var control = (CookieConsentControl)page.LoadControl(ControlPath);
+            var control = (CookieConsentControl)page.LoadControl(Paths.AscxControlPath);
 
             if (control == null)
             {

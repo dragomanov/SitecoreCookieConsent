@@ -72,12 +72,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Constants\Paths.cs" />
-    <Compile Include="sitecore modules\Web\CookieConsent\CookieConsentConstrol.ascx.cs">
-      <DependentUpon>CookieConsentConstrol.ascx</DependentUpon>
+    <Compile Include="sitecore modules\Web\CookieConsent\CookieConsentControl.ascx.cs">
+      <DependentUpon>CookieConsentControl.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="sitecore modules\Web\CookieConsent\CookieConsentConstrol.ascx.designer.cs">
-      <DependentUpon>CookieConsentConstrol.ascx</DependentUpon>
+    <Compile Include="sitecore modules\Web\CookieConsent\CookieConsentControl.ascx.designer.cs">
+      <DependentUpon>CookieConsentControl.ascx</DependentUpon>
     </Compile>
     <Compile Include="Models\CookieConsentSettings.cs" />
     <Compile Include="Pipelines\GetRenderer\GetViewRenderer.cs" />
@@ -94,7 +94,7 @@
     <Content Include="App_Config\Include\CookieConsent\Sitecore.CookieConsent.config">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="sitecore modules\Web\CookieConsent\CookieConsentConstrol.ascx" />
+    <Content Include="sitecore modules\Web\CookieConsent\CookieConsentControl.ascx" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

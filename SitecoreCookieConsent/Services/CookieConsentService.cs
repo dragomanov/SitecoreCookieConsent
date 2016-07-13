@@ -11,6 +11,7 @@ namespace Sitecore.CookieConsent.Services
 {
     public class CookieConsentService : ICookieConsentService
     {
+        private const string ControlPath = "~/sitecore modules/Web/CookieConsent/CookieConsentControl.ascx";
         private const string SettingsItemPath = "/sitecore/system/Modules/Cookie Consent/Settings/{0}";
         private const string ScriptFormat =
             @"  <!-- Begin Cookie Consent plugin by Silktide - http://silktide.com/cookieconsent -->
@@ -134,7 +135,7 @@ namespace Sitecore.CookieConsent.Services
                 return;
             }
 
-            var control = (CookieConsentConstrol)page.LoadControl("~/layouts/Modules/CookieConsent/ScriptJs.ascx");
+            var control = (CookieConsentControl)page.LoadControl(ControlPath);
 
             if (control == null)
             {

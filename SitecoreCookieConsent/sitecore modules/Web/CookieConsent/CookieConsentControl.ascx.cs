@@ -4,7 +4,7 @@ using Sitecore.CookieConsent.Models;
 
 namespace Sitecore.CookieConsent.sitecore_modules.Web.CookieConsent
 {
-    public partial class CookieConsentConstrol : UserControl
+    public partial class CookieConsentControl : UserControl
     {
         public CookieConsentSettings Model { get; set; }
 

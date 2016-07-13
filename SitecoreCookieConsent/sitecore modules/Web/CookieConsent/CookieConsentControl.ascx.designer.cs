@@ -10,6 +10,6 @@
 namespace Sitecore.CookieConsent.sitecore_modules.Web.CookieConsent {
     
     
-    public partial class CookieConsentConstrol {
+    public partial class CookieConsentControl {
     }
 }

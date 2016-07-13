@@ -3,8 +3,9 @@ using System.IO;
 using System.Text.RegularExpressions;
 using System.Web.Mvc;
 using System.Web.Mvc.Html;
+using Sitecore.Configuration;
+using Sitecore.CookieConsent.Constants;
 using Sitecore.CookieConsent.Domains;
-using Sitecore.CookieConsent.Services;
 using Sitecore.Diagnostics;
 using Sitecore.Mvc.Configuration;
 using Sitecore.Mvc.Extensions;
@@ -19,7 +20,7 @@ namespace Sitecore.CookieConsent.Renderers
         protected ICookieConsentService Service { get; set; }
 
         public CookieConsentViewRenderer()
-            : this(new CookieConsentService())
+            : this(Factory.CreateObject(Paths.CookieConsentServiceConfigPath, true) as ICookieConsentService)
         {
         } 
 

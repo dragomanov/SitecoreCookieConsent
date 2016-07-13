@@ -71,6 +71,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Constants\Paths.cs" />
     <Compile Include="sitecore modules\Web\CookieConsent\CookieConsentConstrol.ascx.cs">
       <DependentUpon>CookieConsentConstrol.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

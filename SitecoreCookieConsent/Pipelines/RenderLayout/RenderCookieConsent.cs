@@ -1,5 +1,6 @@
-﻿using Sitecore.CookieConsent.Domains;
-using Sitecore.CookieConsent.Services;
+﻿using Sitecore.Configuration;
+using Sitecore.CookieConsent.Constants;
+using Sitecore.CookieConsent.Domains;
 using Sitecore.Diagnostics;
 using Sitecore.Pipelines.RenderLayout;
 
@@ -10,7 +11,7 @@ namespace Sitecore.CookieConsent.Pipelines.RenderLayout
         protected ICookieConsentService Service { get; set; }
 
         public RenderCookieConsent()
-            : this(new CookieConsentService())
+            : this(Factory.CreateObject(Paths.CookieConsentServiceConfigPath, true) as ICookieConsentService)
         {
         }
 

@@ -6,7 +6,6 @@ using Sitecore.CookieConsent.Models;
 using Sitecore.Data;
 using Sitecore.Data.Fields;
 using Sitecore.Data.Items;
-using Sitecore.Pipelines;
 
 namespace Sitecore.CookieConsent.Services
 {

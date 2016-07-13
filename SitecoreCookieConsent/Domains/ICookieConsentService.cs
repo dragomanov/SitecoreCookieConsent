@@ -1,6 +1,4 @@
-﻿using Sitecore.Pipelines;
-
-namespace Sitecore.CookieConsent.Domains
+﻿namespace Sitecore.CookieConsent.Domains
 {
     public interface ICookieConsentService
     {

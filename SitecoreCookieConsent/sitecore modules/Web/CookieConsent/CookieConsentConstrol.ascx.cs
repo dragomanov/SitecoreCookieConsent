@@ -6,7 +6,7 @@ namespace Sitecore.CookieConsent.sitecore_modules.Web.CookieConsent
 {
     public partial class CookieConsentConstrol : UserControl
     {
-        public ICookieConsentSettings Model { get; set; }
+        public CookieConsentSettings Model { get; set; }
 
         protected void Page_Load(object sender, EventArgs e)
         {

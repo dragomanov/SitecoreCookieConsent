@@ -79,7 +79,6 @@
       <DependentUpon>CookieConsentConstrol.ascx</DependentUpon>
     </Compile>
     <Compile Include="Models\CookieConsentSettings.cs" />
-    <Compile Include="Models\ICookieConsentSettings.cs" />
     <Compile Include="Pipelines\GetRenderer\GetViewRenderer.cs" />
     <Compile Include="Pipelines\RenderLayout\RenderCookieConsent.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

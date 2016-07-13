@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Web.UI;
 using Sitecore.CookieConsent.Domains;
-using Sitecore.CookieConsent.layouts.Modules.CookieConsent;
 using Sitecore.CookieConsent.Models;
+using Sitecore.CookieConsent.sitecore_modules.Web.CookieConsent;
 using Sitecore.Data;
 using Sitecore.Data.Fields;
 using Sitecore.Data.Items;
@@ -134,7 +134,7 @@ namespace Sitecore.CookieConsent.Services
                 return;
             }
 
-            var control = (ScriptJs)page.LoadControl("~/layouts/Modules/CookieConsent/ScriptJs.ascx");
+            var control = (CookieConsentConstrol)page.LoadControl("~/layouts/Modules/CookieConsent/ScriptJs.ascx");
 
             if (control == null)
             {

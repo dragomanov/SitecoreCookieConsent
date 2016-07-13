@@ -71,12 +71,12 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="layouts\Modules\CookieConsent\ScriptJs.ascx.cs">
-      <DependentUpon>ScriptJs.ascx</DependentUpon>
+    <Compile Include="sitecore modules\Web\CookieConsent\CookieConsentConstrol.ascx.cs">
+      <DependentUpon>CookieConsentConstrol.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="layouts\Modules\CookieConsent\ScriptJs.ascx.designer.cs">
-      <DependentUpon>ScriptJs.ascx</DependentUpon>
+    <Compile Include="sitecore modules\Web\CookieConsent\CookieConsentConstrol.ascx.designer.cs">
+      <DependentUpon>CookieConsentConstrol.ascx</DependentUpon>
     </Compile>
     <Compile Include="Models\CookieConsentSettings.cs" />
     <Compile Include="Models\ICookieConsentSettings.cs" />
@@ -94,7 +94,7 @@
     <Content Include="App_Config\Include\CookieConsent\Sitecore.CookieConsent.config">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="layouts\Modules\CookieConsent\ScriptJs.ascx" />
+    <Content Include="sitecore modules\Web\CookieConsent\CookieConsentConstrol.ascx" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

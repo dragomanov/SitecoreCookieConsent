@@ -2,9 +2,9 @@
 using System.Web.UI;
 using Sitecore.CookieConsent.Models;
 
-namespace Sitecore.CookieConsent.layouts.Modules.CookieConsent
+namespace Sitecore.CookieConsent.sitecore_modules.Web.CookieConsent
 {
-    public partial class ScriptJs : UserControl
+    public partial class CookieConsentConstrol : UserControl
     {
         public ICookieConsentSettings Model { get; set; }
 

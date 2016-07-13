@@ -1,4 +1,4 @@
-﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="ScriptJs.ascx.cs" Inherits="Sitecore.CookieConsent.layouts.Modules.CookieConsent.ScriptJs" %>
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="CookieConsentConstrol.ascx.cs" Inherits="Sitecore.CookieConsent.sitecore_modules.Web.CookieConsent.CookieConsentConstrol" %>
 
 <!-- Begin Cookie Consent plugin by Silktide - http://silktide.com/cookieconsent -->
 <script type="text/javascript">

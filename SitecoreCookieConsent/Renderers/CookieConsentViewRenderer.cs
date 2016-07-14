@@ -32,28 +32,9 @@ namespace Sitecore.CookieConsent.Renderers
 
         public override void Render(TextWriter writer)
         {
-            Assert.IsNotNull(writer, "writer");
-            string path = GetPath(ViewPath, MvcSettings.DefaultViewExtension);
-            HtmlHelper htmlHelper = GetHtmlHelper();
-            MvcHtmlString mvcHtmlString;
+            Assert.ArgumentNotNull(writer, "writer");
 
-            try
-            {
-                object model = Model;
-                mvcHtmlString = model != null ? htmlHelper.Partial(path, model) : htmlHelper.Partial(path);
-            }
-            catch (Exception ex)
-            {
-                string str = string.Format("Error while rendering view: '{0}'", path);
-
-                if (Model != null)
-                {
-                    Type type = Model.GetType();
-                    str += string.Format(" (model: '{0}, {1}')", type.FullName, type.Assembly.GetName().Name);
-                }
-
-                throw new InvalidOperationException(str + string.Format(".{0}", Environment.NewLine), ex);
-            }
+            MvcHtmlString mvcHtmlString = GetHtml();
 
             if (mvcHtmlString == null)
             {
@@ -65,7 +46,7 @@ namespace Sitecore.CookieConsent.Renderers
             writer.Write(output);
         }
 
-        public string GetPath(string path, string defaultViewExtension)
+        private string GetPath(string path, string defaultViewExtension)
         {
             if (string.IsNullOrWhiteSpace(path))
             {
@@ -84,6 +65,30 @@ namespace Sitecore.CookieConsent.Renderers
             }
 
             return path;
+        }
+
+        private MvcHtmlString GetHtml()
+        {
+            string path = GetPath(ViewPath, MvcSettings.DefaultViewExtension);
+            HtmlHelper htmlHelper = GetHtmlHelper();
+
+            try
+            {
+                object model = Model;
+                return model != null ? htmlHelper.Partial(path, model) : htmlHelper.Partial(path);
+            }
+            catch (Exception ex)
+            {
+                string str = string.Format("Error while rendering view: '{0}'", path);
+
+                if (Model != null)
+                {
+                    Type type = Model.GetType();
+                    str += string.Format(" (model: '{0}, {1}')", type.FullName, type.Assembly.GetName().Name);
+                }
+
+                throw new InvalidOperationException(str + string.Format(".{0}", Environment.NewLine), ex);
+            }
         }
     }
 }

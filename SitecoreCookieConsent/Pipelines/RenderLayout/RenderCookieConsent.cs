@@ -23,11 +23,7 @@ namespace Sitecore.CookieConsent.Pipelines.RenderLayout
 
         public override void Process(RenderLayoutArgs args)
         {
-            Render();
-        }
-
-        protected virtual void Render()
-        {
+            Assert.ArgumentNotNull(args, "args");
             Service.RenderCookieConsent();
         }
     }

@@ -7,6 +7,7 @@ using Sitecore.Configuration;
 using Sitecore.CookieConsent.Constants;
 using Sitecore.CookieConsent.Domains;
 using Sitecore.Diagnostics;
+using Sitecore.Mvc.Common;
 using Sitecore.Mvc.Configuration;
 using Sitecore.Mvc.Extensions;
 using Sitecore.Mvc.Presentation;
@@ -46,27 +47,6 @@ namespace Sitecore.CookieConsent.Renderers
             writer.Write(output);
         }
 
-        private string GetPath(string path, string defaultViewExtension)
-        {
-            if (string.IsNullOrWhiteSpace(path))
-            {
-                return null;
-            }
-
-            string extension = Path.GetExtension(path);
-            if (!MvcSettings.IsViewExtension(extension) && path.IsAbsoluteViewPath())
-            {
-                return path.WithPostfix(defaultViewExtension.WithPrefix('.'));
-            }
-
-            if (MvcSettings.IsViewExtension(extension) && !path.IsAbsoluteViewPath())
-            {
-                return path.WithoutPostfix(extension.WithPrefix('.'));
-            }
-
-            return path;
-        }
-
         private MvcHtmlString GetHtml()
         {
             string path = GetPath(ViewPath, MvcSettings.DefaultViewExtension);
@@ -89,6 +69,32 @@ namespace Sitecore.CookieConsent.Renderers
 
                 throw new InvalidOperationException(str + string.Format(".{0}", Environment.NewLine), ex);
             }
+        }
+        
+        private static string GetPath(string path, string defaultViewExtension)
+        {
+            if (string.IsNullOrWhiteSpace(path))
+            {
+                return null;
+            }
+
+            string extension = Path.GetExtension(path);
+            if (!MvcSettings.IsViewExtension(extension) && IsAbsoluteViewPath(path))
+            {
+                return path.WithPostfix(defaultViewExtension.WithPrefix('.'));
+            }
+
+            if (MvcSettings.IsViewExtension(extension) && !IsAbsoluteViewPath(path))
+            {
+                return path.WithoutPostfix(extension.WithPrefix('.'));
+            }
+
+            return path;
+        }
+
+        private static bool IsAbsoluteViewPath(string value)
+        {
+            return value.StartsWith("/") || value.StartsWith("~/");
         }
     }
 }

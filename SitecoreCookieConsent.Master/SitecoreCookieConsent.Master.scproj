@@ -34,6 +34,12 @@
     <DebugSymbols>false</DebugSymbols>
     <OutputPath>.\bin\Release\</OutputPath>
     <RecursiveDeployAction>Ignore</RecursiveDeployAction>
+    <SitecoreWebUrl>
+    </SitecoreWebUrl>
+    <InstallSitecoreConnector>False</InstallSitecoreConnector>
+    <DisableFileDeployment>False</DisableFileDeployment>
+    <SitecoreDeployFolder>
+    </SitecoreDeployFolder>
   </PropertyGroup>
   <ItemGroup>
     <AssemblyAttributes Include="AssemblyFileVersion">
@@ -148,8 +154,10 @@
     </SitecoreItem>
   </ItemGroup>
   <ItemGroup>
+    <ExcludedAssemblies Include="Microsoft.%2a" />
     <ExcludedAssemblies Include="Sitecore.Kernel.dll" />
     <ExcludedAssemblies Include="Sitecore.Mvc.dll" />
+    <ExcludedAssemblies Include="System.%2a" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\HedgehogDevelopment\SitecoreProject\v9.0\HedgehogDevelopment.SitecoreProject.targets" Condition="Exists('$(MSBuildExtensionsPath)\HedgehogDevelopment\SitecoreProject\v9.0\HedgehogDevelopment.SitecoreProject.targets')" />
 </Project>

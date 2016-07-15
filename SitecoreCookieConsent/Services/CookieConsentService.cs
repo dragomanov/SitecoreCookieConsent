@@ -7,6 +7,7 @@ using Sitecore.CookieConsent.sitecore_modules.Web.CookieConsent;
 using Sitecore.Data;
 using Sitecore.Data.Fields;
 using Sitecore.Data.Items;
+using Sitecore.Xml.Xsl;
 
 namespace Sitecore.CookieConsent.Services
 {
@@ -127,9 +128,14 @@ namespace Sitecore.CookieConsent.Services
                 Message = _settingsItem[MessageFieldID],
                 DismissButton = _settingsItem[DismissButtonFieldID],
                 LearnMore = _settingsItem[LearnMoreFieldID],
-                PolicyLink = policyLink != null ? policyLink.GetFriendlyUrl() : string.Empty,
+                PolicyLink = policyLink != null ? GetFriendlyUrl(policyLink) : string.Empty,
                 Theme = _settingsItem[ThemeFieldID]
             };
+        }
+
+        private static string GetFriendlyUrl(LinkField field)
+        {
+            return new LinkUrl().GetUrl(new XmlField(field.InnerField, string.Empty), field.InnerField.Database);
         }
 
         private void RenderAscxControl()
